@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form method = "POST" action="CheckLogin.jsp">
-		Username: <input type="text" name="username"/><br/>
+		Email: <input type="text" name="username"/><br/>
 		Password: <input type="password" name="password"/><br/>
 		<input type="submit" value="Login"/>
 	</form>
