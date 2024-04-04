@@ -5,9 +5,9 @@
 <%
 
 	// Variables Depending on Database 
-	String dbname = "Ebay";
-	String usersdb = "users";
-	String dbNameField = "username";
+	String dbname = "cs336project";
+	String usersdb = "user";
+	String dbNameField = "email_address";
 	String dbPassField = "password";
 	
 	// Find inputs
@@ -15,8 +15,10 @@
 	String pass = request.getParameter("password");
 	
 	// Connect to SQL server
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname,"root","MySQLRoot");
+	ApplicationDB db = new ApplicationDB();	
+	Connection con = db.getConnection();
+	//Class.forName("com.mysql.jdbc.Driver");
+	//Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname,"root","MySQLRoot");
 	Statement statement = con.createStatement();
 	ResultSet rs;
 	
@@ -25,9 +27,10 @@
 	rs = statement.executeQuery(cmd);
 	
 	// See if password matches
-	if (rs.next()){
+	if (rs.next()){//**
 		session.setAttribute("user", user);
 		out.println("Welcome "+user);
+		con.close();
 		response.sendRedirect("mainpage.jsp");
 		return;
 	}
@@ -38,9 +41,12 @@
 	
 	if(rs.next()){
 		out.println("Invalid Password");
+		con.close();
 		response.sendRedirect("login.jsp");
 	}else{
-		response.sendRedirect("register.jsp");
+		con.close();
+		out.println("Invalid Email");
+		response.sendRedirect("login.jsp");
 	}
 
 %>

@@ -8,9 +8,14 @@
 </head>
 <body>
 	<form method = "POST" action="CreateAccount.jsp">
-		Enter Username: <input type="text" name="username"/><br/>
+		Enter Email: <input type="text" name="email"/><br/>
 		Enter Password: <input type="password" name="password"/><br/>
 		Verify Password: <input type=password name="verifiedpassword"/><br/>
+		<input type="radio" name="usertype" value="staff"/> Register as Staff
+		  <br>
+		<input type="radio" name="usertype" value="consumer"/> Register as Consumer
+		<br>
+		<br>
 		<input type="submit" value="Create Account"/>
 	</form>
 
