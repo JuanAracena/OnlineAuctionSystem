@@ -1,3 +1,4 @@
+/*
 create database cs336project;
 use cs336project;
 
@@ -23,6 +24,11 @@ INSERT INTO user VALUES(
     false,
     true
 );
+
+*/
+
+-- use cs336project;
+--  delete from user where email_address = 'test@gmail.com';
 
 SELECT *
 FROM user
