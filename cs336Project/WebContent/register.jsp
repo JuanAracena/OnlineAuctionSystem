@@ -7,7 +7,7 @@
 <title>Register</title>
 </head>
 <body>
-	<form method = "POST" action="CreateAccount.jsp">
+	<form method = "POST" action="RegisterVerify.jsp">
 		Enter Email: <input type="text" name="email"/><br/>
 		Enter Password: <input type="password" name="password"/><br/>
 		Verify Password: <input type=password name="verifiedpassword"/><br/>

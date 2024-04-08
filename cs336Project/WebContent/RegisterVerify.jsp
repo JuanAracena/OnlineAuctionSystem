@@ -37,7 +37,7 @@
 			response.sendRedirect("staffregister.jsp");
 			return;
 		}
-		response.sendRedirect("consumerregister.jsp");
+		response.sendRedirect("buyer.jsp");
 	}else{
 		out.println("Invalid Email");
 		response.sendRedirect("register.jsp");
