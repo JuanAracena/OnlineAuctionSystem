@@ -33,10 +33,6 @@
 	if(password.equals(verifyPassword)){
 		session.setAttribute("email", user);
 		session.setAttribute("password", password);
-		if(usertype.equals("staff")){
-			response.sendRedirect("staffregister.jsp");
-			return;
-		}
 		response.sendRedirect("buyer.jsp");
 	}else{
 		out.println("Invalid Email");

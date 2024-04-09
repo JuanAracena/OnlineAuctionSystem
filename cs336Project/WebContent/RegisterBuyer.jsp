@@ -17,7 +17,6 @@
 	String pass = (String) session.getAttribute("password");
 	String dbname = "cs336project";
 	int isSeller = Integer.parseInt(request.getParameter("isSeller") != null ? request.getParameter("isSeller") : "0");
-	int isStaff = Integer.parseInt(request.getParameter("isStaff") != null ? request.getParameter("isStaff") : "0");
 
 	if(name.equals("") || street.equals("") || phone.equals("")){
 		//Move this line to buyer.jsp to display the error message
@@ -27,35 +26,26 @@
 		return;
 	}
 	
+	// Redirects
+	if(isSeller == 1){
+		session.setAttribute("name", name);
+		session.setAttribute("street_address", street);
+		session.setAttribute("phone_number", phone);
+		session.setAttribute("isSeller", isSeller);
+		response.sendRedirect("seller.jsp");
+		return;
+	}
+	
 	//Insert buyer info:
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();;
 	Statement statement = con.createStatement();
 	
-	String info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s', '%s', %d, %d)", table, name, street, phone, user, pass, isSeller, isStaff);
+	String info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s', '%s', %d, %d)", table, name, street, phone, user, pass, isSeller, 0);
 	out.println(info);
 	statement.executeUpdate(info);
 	con.close();
-	
-	// Redirects
-	if(isSeller == 1 || isStaff == 1){
-		session.setAttribute("name", name);
-		session.setAttribute("street_address", street);
-		session.setAttribute("phone_number", phone);
-		session.setAttribute("isSeller", isSeller);
-		session.setAttribute("isStaff", isStaff);
-	}
-	
-	if(isSeller == 1){
-		response.sendRedirect("seller.jsp");
-		return;
-	}
-	
-	if(isStaff == 1){
-		response.sendRedirect("staff.jsp");
-		return;
-	}
-	
+
 	response.sendRedirect("login.jsp");
 	
 %>

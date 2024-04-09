@@ -5,7 +5,7 @@
 <%
 	
 	//Variables
-	String table = "seller";
+	String table = "user";
 	String dbname = "cs336project";
 	
 	//Find inputs
@@ -13,6 +13,15 @@
 	String baddress = request.getParameter("baddress");
 	String btype = request.getParameter("btype");
 	String user = (String) session.getAttribute("email");
+	
+	// Get session info
+	String email = (String) session.getAttribute("email");
+	String password =(String) session.getAttribute("password");
+	String name =(String) session.getAttribute("name");
+	String street =(String) session.getAttribute("street_address");
+	String phone =(String) session.getAttribute("phone_number");
+	int isSeller = 1;
+	int isStaff = 0;
 	
 	if(bname.equals("") || baddress.equals("") || btype.equals("")){
 		//Move this line to buyer.jsp to display the error message
@@ -28,16 +37,15 @@
 	Statement statement = con.createStatement();
 	
 	//TODO =====INSERTING===== \\ 
+	String info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s', '%s', %d, %d)", table, name, street, phone, user, password, isSeller, isStaff);
+	out.println(info);
+	statement.executeUpdate(info);
 	
-	
-	// Redirects
-	int isStaff = (int) session.getAttribute("isStaff");
-	
-	if(isStaff == 1){
-		response.sendRedirect("staff.jsp");
-		return;
-	}
-	
+	info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s')", "end_users", email, bname, baddress, btype);
+	out.println(info);
+	statement.executeUpdate(info);
+			
+	con.close();
 	response.sendRedirect("login.jsp");
 	
 %>
