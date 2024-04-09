@@ -7,6 +7,7 @@
 <title>Main Page</title>
 </head>
 <body>
+	<a href="LogOut.jsp"><button>Log out</button></a>
 	<% 
 	if(session.getAttribute("user") != null){
 		out.println("You are logged in as " + session.getAttribute("user"));
