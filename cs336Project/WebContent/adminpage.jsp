@@ -13,7 +13,7 @@
 	 <a href="createrep.jsp"><button>Create Representative Account</button></a>
 	<br>
 	<br>
-	<a href="GenerateReport.jsp"><button>Generate Sales Report</button></a>
+	<a href="reportpage.jsp"><button>Generate Sales Report</button></a>
 	<br>
 	<br>
 	 <a href="LogOut.jsp"><button>Logout</button></a>
