@@ -44,17 +44,17 @@
 	
 %>
 	<a href="adminpage.jsp"><button>Back</button> </a>
-	<h1>Report Page</h1>
+	<h1>Sales Report</h1>
 	Total Earnings: <%= session.getAttribute("response") %>
 		<a href="GenerateItemReport.jsp"><button>Item</button></a>
 		<a href="GenerateItemTypeReport.jsp"><button>Item Type</button></a>
 		<a href="GenerateSellerReport.jsp"><button>Seller</button></a>
 		<br>
 		<br>
-		<h2>Items List Here</h2>
+		<h2>Items List</h2>
 		<%
 			for(int i = 0;i < itemNames.size();i++){
-				out.println("Item Name: "+ itemNames.get(i)+" | Item Cost: "+ itemPrices.get(i)+ "<br>");
+				out.println("Item Name: "+ itemNames.get(i)+" | Total Earnings: "+ itemPrices.get(i)+ "<br>");
 			}
 		%>
 </body>
