@@ -36,12 +36,14 @@
 	Connection con = db.getConnection();;
 	Statement statement = con.createStatement();
 	
+
 	//TODO =====INSERTING===== \\ 
 	String info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s', '%s', %d, %d)", table, name, street, phone, user, password, isSeller, isStaff);
 	out.println(info);
 	statement.executeUpdate(info);
 	
-	info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s')", "end_users", email, bname, baddress, btype);
+	
+	info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", "end_users", name, street, phone, user, password, bname, baddress, btype, name, null, null, null);
 	out.println(info);
 	statement.executeUpdate(info);
 			
