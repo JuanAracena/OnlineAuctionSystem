@@ -10,7 +10,7 @@
 	<form method= "POST" action="InsertThread.jsp">
 	<p>Title:</p>
 		 <input type="text" name="title"/><br/>
-	<p>Question: </p>
+	<p>Comment: </p>
 		<input type="text" name="description" size=50"/><br/>
 	<p></p>
 	<input type="submit" value="Submit"/></form>

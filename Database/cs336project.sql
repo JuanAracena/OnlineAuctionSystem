@@ -8,7 +8,7 @@
 -- create table help(staff_email varchar(100), user_email varchar(100), primary key(staff_email, user_email), foreign key(staff_email) references staff(email_address), foreign key(user_email) references end_users(email_address));
 -- create table customer_representative(name varchar(100), street_address varchar(300), phone_number varchar(15), email_address varchar(100), password varchar(30), primary key(email_address));
 -- create table sales_report(sales_report_ID int, total_earnings float, best_selling_item varchar(100), best_selling_user varchar(100), earning_per_item float, earnings_per_type float, earnings_per_end_user float, primary key (sales_report_ID));
-#Can't add "not null" to administrative_staff. Pls fix.
+-- #Can't add "not null" to administrative_staff. Pls fix.
 
 -- create table administrative_staff(name varchar(100), street_address varchar(300), phone_number varchar(15), admin_email_address varchar(100), password varchar(30), sales_report_ID int, primary key(admin_email_address), foreign key(sales_report_ID) references sales_report(sales_report_ID));
 -- -- create table sales_report(sales_report_ID int, total_earnings float, primary key (sales_report_ID));
@@ -55,25 +55,25 @@
 -- );
 
 
-SELECT *
-FROM user;
+-- SELECT *
+-- FROM user;
 
-SELECT *
-FROM staff;
-SELECT *
-FROM administrative_staff;
+-- SELECT *
+-- FROM staff;
+-- SELECT *
+-- FROM administrative_staff;
 
-SELECT *
-FROM customer_representative;
+-- SELECT *
+-- FROM customer_representative;
 
-SELECT * 
-FROM user;
+-- SELECT * 
+-- FROM user;
 
-SELECT *
-FROM end_users;
+-- SELECT *
+-- FROM end_users;
 
-SELECT *
-FROM sales_report;
+-- SELECT *
+-- FROM sales_report;
 -- INSERT INTO transaction_report VALUES(
 -- 	430,
 --     3,
@@ -100,3 +100,21 @@ from threads;
 
 select *
 from messages;
+
+select title
+from threads
+where email='a@gmail.com';
+
+select thread_id
+from threads
+where email='a@gmail.com';
+
+select *
+from threads
+join messages using(thread_id);
+
+select *
+from messages;
+
+select *
+from threads;
