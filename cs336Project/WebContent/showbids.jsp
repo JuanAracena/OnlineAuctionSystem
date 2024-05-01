@@ -13,7 +13,7 @@
 	String schemaName = "bid";
 	String bidId = "bid";
 	String auctionId = "auction_id";
-	String email = "email_address";
+	String email = "bid_email_address";
 	Integer targetId = Integer.parseInt(request.getParameter("auctionID"));
 	ArrayList<String>bider_email = new ArrayList<String>();
 	ArrayList<Float>bid_amount = new ArrayList<Float>();

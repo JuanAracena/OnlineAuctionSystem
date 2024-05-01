@@ -44,7 +44,8 @@
 %>
 	<a href="adminpage.jsp"><button>Back</button> </a>
 	<h1>Sales Report</h1>
-	Total Earnings: <%= session.getAttribute("response") %>
+	TOTAL EARNINGS: {$<%= session.getAttribute("response") %>}
+	<%out.println("OPTIONS:"); %>
 		<a href="GenerateItemReport.jsp"><button>Item</button></a>
 		<a href="GenerateItemTypeReport.jsp"><button>Item Type</button></a>
 		<a href="GenerateSellerReport.jsp"><button>Seller</button></a>
@@ -53,7 +54,7 @@
 		<h2>Item Types List </h2>
 				<%
 			for(int i = 0;i < itemTypeName.size();i++){
-				out.println("Item Name: "+ itemTypeName.get(i)+" | Total Earnings: "+ itemPrices.get(i)+ "<br>");
+				out.println("Item Type Name: {"+ itemTypeName.get(i)+"} | Total Earnings: {"+ itemPrices.get(i)+ "}	<br>");
 			}
 		%>
 </body>
