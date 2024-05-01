@@ -7,6 +7,7 @@
 <title>Main Page</title>
 </head>
 <body>
+	<a href="forums.jsp"><button>Get Help</button></a>
 	<a href="LogOut.jsp"><button>Log out</button></a>
 	<% 
 	if(session.getAttribute("user") != null){
