@@ -49,6 +49,7 @@
 		message_id += 1;
 	}
 	
+	
 	info = String.format("INSERT INTO %s VALUES ('%d', '%d', '%s', NOW())", "messages", thread_id, message_id, descr);
 	statement.executeUpdate(info);
 	

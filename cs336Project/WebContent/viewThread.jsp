@@ -65,9 +65,11 @@
 	</div>
 	<div>
 		<form method = "POST" action="ReplyController.jsp">
-			Comment: <input type="text" size = 50 name="comment"/><br/>
-			<input type="submit" value="Reply"/>
+			Comment: <input type="text" size = 50 name="comment" required/><br/>
+			<br/><input type="submit" value="Reply"/>
 		</form>
+		
+		<br/><a href="LogOut.jsp"><button>Log out</button></a>
 	
 	</div>	
 </body>

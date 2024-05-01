@@ -1,6 +1,6 @@
 -- drop database cs336project;
 -- create database cs336project;
--- use cs336project;
+use cs336project;
 
 -- create table user (name varchar(100), street_address varchar(300), phone_number varchar(15), email_address varchar(100), password varchar(30), isSeller boolean, isStaff boolean, primary key(email_address));
 -- create table end_users(name varchar(100), street_address varchar(300), phone_number varchar(15), email_address varchar(100), password varchar(30), business_name varchar(100), business_address varchar(300), business_type varchar(100), owners varchar(100), officers varchar(100), directors varchar(100), account_managers varchar(100), primary key(email_address));

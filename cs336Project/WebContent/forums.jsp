@@ -16,9 +16,6 @@
 			ApplicationDB db = new ApplicationDB();
 			Connection con = db.getConnection();
 			Statement statement = con.createStatement();
-			Statement statement2 = con.createStatement();
-			Statement statement3 = con.createStatement();
-			ArrayList<String> threadsList = new ArrayList<>();
 			ArrayList<String> titleList = new ArrayList<>();
 			ArrayList<String> threadIdList = new ArrayList<>();
 			ResultSet rs;
@@ -26,32 +23,20 @@
 			
 			//Get info:
 			String email = (String) session.getAttribute("user");
-			
-			System.out.println(email);
-			
-			//Getting email from threads:
-			String getThreadEmail = String.format("SELECT email FROM threads");
-			String getThreadTitle = String.format("SELECT title FROM threads WHERE email='%s'", email);
-			String getThreadId = String.format("SELECT thread_id FROM threads WHERE email='%s'", email);
-			rs = statement.executeQuery(getThreadEmail);
-			ResultSet rs2 = statement2.executeQuery(getThreadTitle);
-			ResultSet rs3 = statement3.executeQuery(getThreadId);
+			String getInfo = String.format("SELECT thread_id, title, email FROM threads WHERE email='%s'", email);
+			rs = statement.executeQuery(getInfo);
 			String threadId = "";
+			
+			
 			while(rs.next()){
-				String threadEmail = rs.getString("email");
-				if (rs3.next()){
-					threadId = rs3.getString("thread_id");
-				}
+				String threadTitle = rs.getString("title");
+				threadId = rs.getString("thread_id");
+				titleList.add(threadTitle);
+				threadIdList.add(threadId);
 				
-				if(email.equals(threadEmail)){
-					threadsList.add(threadEmail);
-					threadIdList.add(threadId);
-					while(rs2.next()){
-						String threadTitle = rs2.getString("title");
-						titleList.add(threadTitle);
-					}
-				}
 			}
+			
+			
 			con.close();
 		%>
 		<%
@@ -65,6 +50,8 @@
 	<div>
 		<p>Create a new thread to talk to a customer representative</p>
 		<a href="createThread.jsp"><button>New Thread</button></a>
+		<a href="LogOut.jsp"><button>Log out</button></a>
 	</div>
+	
 </body>
 </html>

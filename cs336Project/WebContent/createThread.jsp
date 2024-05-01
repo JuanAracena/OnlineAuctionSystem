@@ -9,9 +9,9 @@
 <body>
 	<form method= "POST" action="InsertThread.jsp">
 	<p>Title:</p>
-		 <input type="text" name="title"/><br/>
+		 <input type="text" name="title" required/><br/>
 	<p>Comment: </p>
-		<input type="text" name="description" size=50"/><br/>
+		<input type="text" name="description" size=50 required/><br/>
 	<p></p>
 	<input type="submit" value="Submit"/></form>
 </body>
