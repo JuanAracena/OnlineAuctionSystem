@@ -42,7 +42,7 @@
 	out.println(info);
 	statement.executeUpdate(info);
 	
-	
+
 	info = String.format("INSERT INTO %s VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", "end_users", name, street, phone, user, password, bname, baddress, btype, name, null, null, null);
 	out.println(info);
 	statement.executeUpdate(info);
