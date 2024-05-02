@@ -11,11 +11,8 @@
 <% 
 	String dbname = "cs336project";
 	String transactionReport = "transaction_report";
-	//item_ID int, item_Type int, item_name varchar(100), end_user_email varchar(100), selling_price int,
-	//String itemID = "itemID";
-	//String itemType = "item_Type";
-	//String userEmail = "end_user_email";
-	//String sellingPrice = "selling_price";
+	String auction = "auction";
+	
 	
 	//alert("Button Clicked");
 	ApplicationDB db = new ApplicationDB();	
