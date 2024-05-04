@@ -1,6 +1,6 @@
 -- drop database cs336project;
 -- create database cs336project;
-use cs336project;
+-- use cs336project;
 
 -- create table user (name varchar(100), street_address varchar(300), phone_number varchar(15), email_address varchar(100), password varchar(30), isSeller boolean, isStaff boolean, primary key(email_address));
 -- create table end_users(name varchar(100), street_address varchar(300), phone_number varchar(15), email_address varchar(100), password varchar(30), business_name varchar(100), business_address varchar(300), business_type varchar(100), owners varchar(100), officers varchar(100), directors varchar(100), account_managers varchar(100), primary key(email_address));
@@ -15,7 +15,7 @@ use cs336project;
 -- create table transaction_report(item_ID int, item_Type int, item_name varchar(100), end_user_email varchar(100), selling_price int, primary key(item_ID, item_name));
 
 -- create table threads(thread_id int auto_increment, title varchar(100), email varchar(100), primary key(thread_id));
--- create table messages(thread_id int auto_increment, message_id int, description varchar(300), post_date datetime, primary key(thread_id, message_id), foreign key(thread_id) references threads(thread_id));
+-- create table messages(thread_id int auto_increment, message_id int, description varchar(300), post_date datetime, isrep boolean, primary key(thread_id, message_id), foreign key(thread_id) references threads(thread_id));
 -- show tables;
 
 
@@ -118,3 +118,21 @@ from messages;
 
 select *
 from threads;
+
+select name
+from user
+where email_address='a@gmail.com';
+
+select title
+from threads 
+join messages using(thread_id)
+where email = 'b@gmail.com';
+
+select name
+from user
+join threads on user.email_address = threads.email
+join messages using(thread_id)
+where email='b@gmail.com';
+
+select *
+from user;

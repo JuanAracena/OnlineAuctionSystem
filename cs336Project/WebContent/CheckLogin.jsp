@@ -18,7 +18,7 @@
 	ApplicationDB db = new ApplicationDB();	
 	Connection con = db.getConnection();
 	//Class.forName("com.mysql.jdbc.Driver");
-	//Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname,"root","MySQLRoot");
+	//Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbname,"root","Int3LEx$5");
 	Statement statement = con.createStatement();
 	ResultSet rs;
 	

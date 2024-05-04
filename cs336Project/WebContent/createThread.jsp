@@ -11,7 +11,7 @@
 	<p>Title:</p>
 		 <input type="text" name="title" required/><br/>
 	<p>Comment: </p>
-		<input type="text" name="description" size=50 required/><br/>
+		<textarea rows="5" cols="50" name="description" required></textarea><br/>
 	<p></p>
 	<input type="submit" value="Submit"/></form>
 </body>
