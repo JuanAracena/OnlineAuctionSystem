@@ -49,7 +49,7 @@
 		<%
 			Statement stmt2 = con.createStatement();
 			ResultSet rs2;
-			String getAlerts = String.format("SELECT text, redirect, date FROM alerts WHERE email='%s'", session.getAttribute("user"));
+			String getAlerts = String.format("SELECT text, redirect, date FROM alerts WHERE email='%s' order by date desc", session.getAttribute("user"));
 			rs2 = stmt2.executeQuery(getAlerts);
 			while(rs2.next()){%>
 				<p>&lt;<%out.print(rs2.getString("date"));%>&gt;:<%out.print(rs2.getString("text"));%><br><a href="<%= rs2.getString("redirect") %>">Check it out!</a>

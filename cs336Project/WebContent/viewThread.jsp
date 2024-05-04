@@ -50,13 +50,15 @@
 				String messageTId = rs.getString("thread_id");
 				if(thread_id.equals(messageTId)){
 					session.setAttribute("ThId", thread_id);
-					String getDescrDate = String.format("SELECT DISTINCT description, post_date FROM messages WHERE thread_id = %d order by post_date", Integer.valueOf(messageTId));
+					String getDescrDate = String.format("SELECT DISTINCT description, post_date, isrep FROM messages WHERE thread_id = %d order by post_date", Integer.valueOf(messageTId));
 					rs2 = statement2.executeQuery(getDescrDate);
 					while(rs2.next()){
 						String descr = rs2.getString("description");
 						String post_date = rs2.getString("post_date");
+						String isrep = Integer.toString(rs2.getInt("isrep"));
 						descrList.add(descr);
 						descrList.add(post_date);
+						descrList.add(isrep);
 					}
 				
 				}
@@ -70,21 +72,23 @@
 			
 			
 			<% //Displaying descrList:
-			for(int i = 0; i < descrList.size(); i+=2){%>
+			for(int i = 0; i < descrList.size(); i+=3){%>
 				
 				<p>&lt;<%out.print(descrList.get(i + 1));
-				%>&gt; (<%out.print(email);%>): <%out.print(descrList.get(i));%> from 
-				<%
-				Connection con2 = db.getConnection();
-				String getName = String.format("SELECT name FROM user JOIN threads ON user.email_address = threads.email JOIN messages USING(thread_id) WHERE email='%s'", email);
-				Statement stmt2 = con2.createStatement();
-				rs4 = stmt2.executeQuery(getName);
-				if(rs4.next()){
-					out.print(rs4.getString("name"));}%></p><br>
+				%>&gt; (<%
+						
+						if(descrList.get(i+2).equals("1")){
+							out.print("Representative");
+						}else{
+							out.print(email);
+						}
+						
+					%>): <%out.print(descrList.get(i));%> 
+				</p><br>
 				
 				
 				
-			<%con2.close();}%>	
+			<%}%>	
 		
 	</div>
 	<div>

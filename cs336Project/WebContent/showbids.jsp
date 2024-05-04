@@ -21,7 +21,7 @@
 	Connection con = db.getConnection();
 	Statement statement = con.createStatement();
 	ResultSet rs;
-	String cmd = String.format("SELECT * FROM %s WHERE %s='%s'", schemaName,auctionId,targetId);
+	String cmd = String.format("SELECT * FROM %s WHERE %s='%s' order by bid desc", schemaName,auctionId,targetId);
 	rs = statement.executeQuery(cmd);
 	while(rs.next()){
 		bider_email.add(rs.getString(email));
@@ -32,7 +32,7 @@
 	<h1>Current Bids</h1>
 	<%
 		for(int i = 0; i < bider_email.size(); i++){
-			out.println("BUYER {"+ bider_email.get(i)+ "} | CURRENT BIDDING AMOUNT {$"+bid_amount.get(i)+"} <a href=DeleteBid.jsp?targetbid="+bid_amount.get(i)+"&auctionID="+targetId+"><button>Delete</button></a>");
+			out.println("BUYER {"+ bider_email.get(i)+ "} | CURRENT BIDDING AMOUNT {$"+bid_amount.get(i)+"} <a href=DeleteBid.jsp?targetbid="+bid_amount.get(i)+"&auctionID="+targetId+"><button>Delete</button></a><br/><br/>");
 		}
 	%>
 </body>

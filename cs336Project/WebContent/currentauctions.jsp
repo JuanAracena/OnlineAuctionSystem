@@ -41,7 +41,7 @@
 		String cmd2 = String.format("SELECT * from %s WHERE %s = '%s'",item, itemID, auctionItemId.get(i));
 		ResultSet rs2 = statement.executeQuery(cmd2);
 		if(rs2.next()){
-			auctionItemName.add("hi");
+			auctionItemName.add(rs2.getString("item_name"));
 			auctionItemType.add(rs2.getString(itemType));
 		}else{
 			out.println("item not found for item id: " + auctionItemId.get(i));
