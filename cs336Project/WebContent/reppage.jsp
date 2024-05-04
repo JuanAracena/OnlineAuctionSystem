@@ -11,9 +11,9 @@
 	<a href="LogOut.jsp"><button>Log out</button></a>
 	<br>
 	<br>
-	<a href="LogOut.jsp"><button>Customer Questions</button></a> 
-	<a href="LogOut.jsp"><button>Current Bids</button></a>
-	<a href="LogOut.jsp"><button>Current Auctions</button></a>
+	<a href="customermessages.jsp"><button>Customer Questions</button></a> 
+	<a href="currentbids.jsp"><button>Current Bids</button></a>
+	<a href="currentauctions.jsp"><button>Current Auctions</button></a>
 	<a href="editaccounts.jsp"><button>Edit/Delete Customer Accounts</button></a>
 </body>
 </html>

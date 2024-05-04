@@ -41,7 +41,7 @@
 	<h1>Edit Accounts</h1>
 	<%
 		for(int i = 0; i < customerEmails.size(); i++){
-			out.println("NAME: {" + customerNames.get(i) + "} EMAIL: {" + customerEmails.get(i) + "}  <br>OPTIONS: <a href='edituser.jsp?custNums="+customerEmails.get(i)+"'><button>Edit</button></a> <a href='DeleteUser.jsp?customerNums="+customerEmails.get(i)+"'><button>Delete</button></a><br><br>");		
+			out.println("NAME: {" + customerNames.get(i) + "} EMAIL: {" + customerEmails.get(i) + "}  <br>OPTIONS: <a href='edituser.jsp?customerNums="+customerEmails.get(i)+"'><button>Edit</button></a> <a href='DeleteUser.jsp?customerNums="+customerEmails.get(i)+"'><button>Delete</button></a><br><br>");		
 		}
 	
 	%>
