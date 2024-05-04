@@ -10,19 +10,34 @@
 </head>
 <body>
 	<div>
-	<h1>Messages</h1>
+	<h1><% ApplicationDB db = new ApplicationDB();
+	Connection con = db.getConnection();
+	Statement stmt = con.createStatement();
+	ResultSet rs3;
+	ResultSet rs4;
+	
+	String email = (String) session.getAttribute("user");
+	String getTitle = String.format("SELECT title FROM threads JOIN messages USING(thread_id) WHERE email='%s'", email);
+	rs3 = stmt.executeQuery(getTitle);
+	
+	
+	
+	if(rs3.next()){
+		out.print(rs3.getString("title") + " | {" + email + "}");
+	}
+		
+	%>
+	
+	</h1>
 		<%-- Display messages here --%>
 		
 		<%
 			//Getting info:
-			ApplicationDB db = new ApplicationDB();
-			Connection con = db.getConnection();
 			Statement statement = con.createStatement();
 			ResultSet rs;
 			Statement statement2 = con.createStatement();
 			ResultSet rs2;
 			
-			String email = (String) session.getAttribute("user");
 			String thread_id = request.getParameter("threadId");
 			ArrayList<String> descrList = new ArrayList<>();
 			
@@ -49,26 +64,34 @@
 			}
 			
 			con.close();
+			
 			%>
 			
 			
 			
 			<% //Displaying descrList:
 			for(int i = 0; i < descrList.size(); i+=2){%>
-				<p><%out.print(descrList.get(i));%></p>
-				<p><%out.print(descrList.get(i + 1));
-				%></p><br>
+				
+				<p>&lt;<%out.print(descrList.get(i + 1));
+				%>&gt; (<%out.print(email);%>): <%out.print(descrList.get(i));%> from 
+				<%
+				Connection con2 = db.getConnection();
+				String getName = String.format("SELECT name FROM user JOIN threads ON user.email_address = threads.email JOIN messages USING(thread_id) WHERE email='%s'", email);
+				Statement stmt2 = con2.createStatement();
+				rs4 = stmt2.executeQuery(getName);
+				if(rs4.next()){
+					out.print(rs4.getString("name"));}%></p><br>
 				
 				
-			<%}%>	
+				
+			<%con2.close();}%>	
 		
 	</div>
 	<div>
 		<form method = "POST" action="ReplyController.jsp">
-			Comment: <input type="text" size = 50 name="comment" required/><br/>
-			<br/><input type="submit" value="Reply"/>
+			<textarea name="comment" rows="5" cols= "50" required></textarea><br/>
+			<br/><input type="submit" value="Post"/>
 		</form>
-		
 		<br/><a href="LogOut.jsp"><button>Log out</button></a>
 	
 	</div>	
