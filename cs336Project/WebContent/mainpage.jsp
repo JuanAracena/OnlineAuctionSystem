@@ -22,7 +22,7 @@
 	%>
 	</h1>
 	<a href="forums.jsp"><button>Profile</button></a><br><br>
-	<a href="forums.jsp"><button>Buy</button></a>
+	<a href="listedauctionpage.jsp"><button>Buy</button></a>
 	
 	<%
 		Statement stmt3 = con.createStatement();
@@ -34,7 +34,7 @@
 		if(rs3.next()){
 			int isSeller = rs3.getInt("isSeller");
 			if(isSeller == 1){%>
-			<a href="forums.jsp"><button>Sell</button></a>
+			<a href="registerauctionpage.jsp"><button>Sell</button></a>
 				
 			<% }
 		}

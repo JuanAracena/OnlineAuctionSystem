@@ -17,6 +17,22 @@ create table threads(thread_id int auto_increment, title varchar(100), email var
 create table messages(thread_id int auto_increment, message_id int, description varchar(300), post_date datetime, isrep boolean, primary key(thread_id, message_id), foreign key(thread_id) references threads(thread_id));
 create table alerts(alert_id int auto_increment, email varchar(100), text varchar(300), redirect varchar(100), date datetime, primary key(alert_id));
 
+-- create table auction(auction_id int auto_increment primary key, item_id int, email_address varchar(100), initprice float, bidinc float, minprice float, endauction DATETIME, foreign key(item_id) references item(item_id), foreign key(email_address) references user(email_address));
+-- create table bid(auction_id int, bid float, bid_email_address varchar(100), primary key(auction_id, bid), foreign key(auction_id) references auction(auction_id), foreign key(bid_email_address) references user(email_address));
+-- create table autobid(auction_id int, autobid_email varchar(100), autobid_cap float, primary key(auction_id, autobid_email), foreign key(auction_id) references auction(auction_id), foreign key(autobid_email) references user(email_address));
+-- create table alerts(alert_id int auto_increment, email varchar(100), text varchar(300), redirect varchar(100), date datetime, primary key(alert_id));
+-- create table item(item_id int auto_increment primary key, item_name varchar(100), email_address varchar(100), description varchar(200), 
+-- item_type varchar(50), 
+-- PSU_Watts varchar(25), PSU_Efficiency varchar(25), PSU_Size varchar(25), 
+-- `Motherboard_RAM Slots` varchar(25), Motherboard_Chipset varchar(25), `Motherboard_Amount Storage Connectors` varchar(25),
+-- `CPU_Number of Cores` varchar(25), CPU_Socket varchar(25), `CPU_Product Line` varchar(25), 
+-- `GPU_Video Memory` varchar(25),
+-- `Hard Drive_Storage Capacity` varchar(25), 
+-- `RAM_Storage Capacity` varchar(25), `RAM_Clock Frequency` varchar(25), `RAM_Stick Type` varchar(25), 
+-- `Monitor_Resolution` varchar(25), `Monitor_Refresh Rate` varchar(25), Monitor_Size varchar(25)
+-- );
+-- create table item_tags(tag_id int auto_increment primary key, item_id int not null, tag varchar(50), foreign key(item_id) references item(item_id));
+
 show tables;
 
 
