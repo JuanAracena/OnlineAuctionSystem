@@ -60,6 +60,7 @@
 	%>
 	</h1>
 	<a href=<% out.print("profilepage.jsp?profile=" + loggedin);%>><button>Profile</button></a><br><br>
+	<a href="searchforum.jsp"><button>Search Forum</button></a>
 	<a href="listedauctionpage.jsp"><button>Buy</button></a>
 	
 	<%
