@@ -84,6 +84,10 @@
 	<a href="LogOut.jsp"><button>Log out</button></a>
 	<br><br>
 	<div>
+	<form method = "POST" action="profilesearch.jsp">
+		Search for users: <input type="text" name="keywordSearch"/>
+		<input type="submit" value="Search"/>
+	</form>
 	<%--Display alerts here --%>
 		<p>Alerts:</p>
 		<%

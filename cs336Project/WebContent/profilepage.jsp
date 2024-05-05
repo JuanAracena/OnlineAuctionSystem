@@ -20,7 +20,7 @@
 	
 		// HANDLE TRANSACTION REPORT 
 		ApplicationDB db = new ApplicationDB();	
-		Connection con = db.getConnection();;
+		Connection con = db.getConnection();
 		Statement statement = con.createStatement();
 		Statement statement2 = con.createStatement();
 		Statement statement3 = con.createStatement();
