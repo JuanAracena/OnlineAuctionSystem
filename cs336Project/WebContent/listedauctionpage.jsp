@@ -22,6 +22,7 @@
 		ApplicationDB db = new ApplicationDB();	
 		Connection con = db.getConnection();;
 		Statement statement = con.createStatement();
+		Statement statement2 = con.createStatement();
 		
 		String search = request.getParameter("search");
 		String sortanddir = request.getParameter("sortanddir");
@@ -92,12 +93,17 @@
 				String itemname = rs.getString("item_name");
 				String description = rs.getString("description");
 				Timestamp endauction = rs.getTimestamp("endauction");
-					
+				
+				// Create keyword search
+				
+				
 				float maxbid = rs.getFloat("initprice");
 				
 				if(rs.getObject("max_bid") != null){
 					maxbid = rs.getFloat("max_bid");
 				}
+				
+				if(search.isEmpty())
 				
 				%>
 					
