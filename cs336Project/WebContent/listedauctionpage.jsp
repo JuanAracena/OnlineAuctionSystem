@@ -48,7 +48,7 @@
 			sortdir = "ASC";
 		}
 	%>
-	
+	<a href="mainpage.jsp"><button>Home</button></a>
 	<%-- JQUERY IMPLEMENTATIONS --%>
 	
 	
@@ -215,7 +215,7 @@
 	
 	<%-- ITEMS --%>
 	<div id=items>
-		<h3>Recently Sold Items:</h3>
+		<h3>Recently Closed Items:</h3>
 		<%
 			rs = statement.executeQuery("select * from auction JOIN item using(item_id) LEFT JOIN (select auction_id, max(bid) as max_bid from bid group by auction_id) as max_bids using(auction_id) where endauction < NOW() order by " + sortby + " " + sortdir);	
 
@@ -272,7 +272,6 @@
 	
 		%>
 	</div>
-	<a href="mainpage.jsp"><button>Home</button></a>
 	
 	
 </body>

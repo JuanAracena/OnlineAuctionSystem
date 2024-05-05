@@ -13,7 +13,7 @@
 	String dbname = "cs336project";
 	String transactionReport = "transaction_report";
 	ArrayList<String> userEmails = new ArrayList<>(); 
-	ArrayList<Integer> itemPrices = new ArrayList<>();
+	ArrayList<Float> itemPrices = new ArrayList<>();
 	//item_ID int, item_Type int, item_name varchar(100), end_user_email varchar(100), selling_price int,
 	//String itemID = "itemID";
 	String itemType = "item_Type";
@@ -41,12 +41,12 @@
 		if(rs.next()){
 			session.setAttribute("best_selling_Item", rs.getString("item_name"));
 		}
-		String cmd2 = String.format("SELECT %s, SUM(%s) AS total_price FROM %s GROUP BY %s;",userEmail, sellingPrice, transactionReport, userEmail);
+		String cmd2 = String.format("SELECT a.email_address, SUM(t.selling_price) AS total_sales FROM transaction_report AS t JOIN auction AS a ON t.item_ID = a.item_id GROUP BY a.email_address;");
 		ResultSet rs2 = statement.executeQuery(cmd2);
 		
 		while(rs2.next()){
-			userEmails.add(rs2.getString(userEmail));
-			itemPrices.add(rs2.getInt("total_price"));
+			userEmails.add(rs2.getString("email_address"));
+			itemPrices.add(rs2.getFloat("total_sales"));
 		}
 		con.close();
 	}

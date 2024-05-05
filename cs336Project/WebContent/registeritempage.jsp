@@ -18,6 +18,7 @@
 	
 	<form method = "POST" action = "RegisterItem.jsp"> 
 		
+		<a href="mainpage.jsp"><button>Home</button></a>
 		<%-- GENERAL INFORMATION --%>
 		<h3> Enter Item Information </h3>
 		Item Name: <br/> 

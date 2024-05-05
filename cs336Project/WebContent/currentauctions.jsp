@@ -16,6 +16,7 @@
 	String itemID = "item_id";
 	String itemType = "item_type";
 	Integer currentID;
+	ArrayList<Integer> auctionId = new ArrayList<>();
 	ArrayList<String> auctionItemName = new ArrayList<>(); 
 	ArrayList<String> auctionItemType = new ArrayList<>();
 	ArrayList<Integer> auctionItemId = new ArrayList<>();
@@ -28,13 +29,14 @@
 	Connection con = db.getConnection();
 	Statement statement = con.createStatement();
 	ResultSet rs;
-	String cmd = String.format("SELECT * from %s ", auctions);
+	String cmd = String.format("SELECT * from %s where endauction > NOW()", auctions);
 	rs = statement.executeQuery(cmd);
 	while(rs.next()){
 		//if current time is < expire time
 		// Store seller email in sellerEmails Arraylist
 		sellerEmails.add(rs.getString(sellerEmail));
-		auctionItemId.add(rs.getInt(itemID));
+		auctionItemId.add(rs.getInt("item_id"));
+		auctionId.add(rs.getInt("auction_id"));
 	// Fore each Item ID make get request to grab that item name and store in the auctionItemName
 	}
 	for(int i =0; i < auctionItemId.size(); i++){
@@ -55,7 +57,7 @@
 
 		<%
 		for(int i = 0; i < sellerEmails.size(); i++){
-			out.println("SELLER: {"+ sellerEmails.get(i)+"} | ITEM TYPE:{" + auctionItemType.get(i)+"} | ITEM NAME: {" + auctionItemName.get(i)+ "} <a href=DeleteAuction.jsp?auctionID="+auctionItemId.get(i)+"><button>Delete</button></a><br><br>");
+			out.println("SELLER: {"+ sellerEmails.get(i)+"} | ITEM TYPE:{" + auctionItemType.get(i)+"} | ITEM NAME: {" + auctionItemName.get(i)+ "} <a href=DeleteAuction.jsp?auctionID="+auctionId.get(i)+"><button>Delete</button></a><br><br>");
 		}
 		
 		%>

@@ -57,6 +57,6 @@
 	String info = String.format("INSERT INTO auction(item_id, email_address, initprice, bidinc, minprice, endauction) VALUES (%d, '%s', %.2f, %.2f, %.2f, '%s')", itemnum, user, initprice, bidinc, minprice, sqltime);
 	statement.executeUpdate(info);
 	
-	response.sendRedirect("registerauctionpage.jsp");
+	response.sendRedirect("itemdetailspage.jsp?id=" + itemnum);
 	
 %>

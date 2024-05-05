@@ -62,6 +62,8 @@
 		
 	%>
 	
+	<a href="mainpage.jsp"><button>Home</button></a>
+	
 	<div id=itemdetails>
 		<h3>Item Details</h3>
 		Item Name: <% out.print(itemname); %><br/>

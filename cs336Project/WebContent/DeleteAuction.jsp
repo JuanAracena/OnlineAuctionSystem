@@ -13,8 +13,11 @@
 		ApplicationDB db = new ApplicationDB();	
 		Connection con = db.getConnection();
 		Statement statement = con.createStatement();
+		statement.executeUpdate("DELETE FROM autobid WHERE auction_id=" + targetId);
 		String cmd = String.format("DELETE FROM %s WHERE %s = '%s'",schemaName,auctionID, targetId );
 		statement.executeUpdate(cmd);
 		String cmd2 = String.format("DELETE FROM %s WHERE %s = '%s'",schemaName2,auctionID, targetId );
 		statement.executeUpdate(cmd2);
+		
+		response.sendRedirect("currentauctions.jsp");
 	%>

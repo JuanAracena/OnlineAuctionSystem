@@ -15,7 +15,7 @@
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
+	<a href="mainpage.jsp"><button>Home</button></a>
 	<%
 	
 		// HANDLE TRANSACTION REPORT 
@@ -77,7 +77,7 @@
 		
 		ResultSet tagsInfo = statement.executeQuery("select * from search_tags where email = '" + profileTo + "'");
 		ResultSet soldInfo = soldstatement.executeQuery(String.format("select * from transaction_report join auction on transaction_report.item_ID = auction.item_id where email_address = '%s'", profileTo));
-		ResultSet purchaseInfo = purchasestatement.executeQuery(String.format("select * from transaction_report join auction on transaction_report.item_ID = auction.item_id where email_address = '%s'", profileTo));
+		ResultSet purchaseInfo = purchasestatement.executeQuery(String.format("select * from transaction_report join auction on transaction_report.item_ID = auction.item_id where end_user_email = '%s'", profileTo));
 		
 	%>
 	
@@ -170,7 +170,7 @@
 					int iid = purchaseInfo.getInt("item_ID");
 					String iname = purchaseInfo.getString("item_name");
 					String itype = purchaseInfo.getString("item_Type");
-					String seller = purchaseInfo.getString("email_address");
+					String seller = purchaseInfo.getString("end_user_email");
 					float soldprice = purchaseInfo.getFloat("selling_price");
 					
 					%>
@@ -185,7 +185,7 @@
 				}
 			
 			%>
-		<a href="mainpage.jsp"><button>Home</button></a>
+		
 	
 </body>
 </html>
