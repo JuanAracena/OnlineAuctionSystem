@@ -33,7 +33,6 @@ create table autobid(auction_id int, autobid_email varchar(100), autobid_cap flo
 
 create table item_tags(tag_id int auto_increment primary key, item_id int not null, tag varchar(50), foreign key(item_id) references item(item_id));
 create table search_tags(tag_id int auto_increment primary key, email varchar(100) not null, tag varchar(50), foreign key(email) references user(email_address));
-
 show tables;
 
 
@@ -153,8 +152,8 @@ join messages using(thread_id)
 where email='b@gmail.com';
 
 
--- insert into alerts values(1,'a@gmail.com', 'A new item is available for purchase', 'profilepage.jsp', '2001-12-12 01:32:13'),
--- (2,'a@gmail.com', 'Here are some items you might be interested in', 'placeholder.jsp', '2002-12-12 01:32:13');
+insert into alerts values(1,'a@gmail.com', 'Dont like your item? Talk to one of our customer reps. by making a thread', 'forums.jsp', '2001-12-12 01:32:13'),
+(2,'a@gmail.com', 'A customer rep. replied to your message', 'forums.jsp', '2002-12-12 01:32:13');
 
 -- insert into alerts values(1,'a@gmail.com', 'A new item is available for purchase', 'profilepage.jsp', '2001-12-12 01:32:13');
 
