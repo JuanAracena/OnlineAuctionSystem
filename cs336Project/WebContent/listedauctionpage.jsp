@@ -24,7 +24,7 @@
 		Statement statement = con.createStatement();
 		Statement statement2 = con.createStatement();
 		
-		String search = request.getParameter("search").toLowerCase();
+		String search = request.getParameter("search");
 		String sortanddir = request.getParameter("sortanddir");
 		String sortby = request.getParameter("sort");
 		String sortdir = request.getParameter("dir");
@@ -32,6 +32,7 @@
 		if(search == null){
 			search = "";
 		}
+		search = search.toLowerCase();
 		
 		if(sortanddir != null){
 			String[] params = sortanddir.split("-");
@@ -105,7 +106,10 @@
 		        }
 				ResultSet tagsrs = statement2.executeQuery(String.format("select auction_id, tag from auction JOIN item using(item_id) JOIN item_tags using(item_id) where auction_id=%d", auctionid));
 				while(tagsrs.next()){
-					keywords.add(tagsrs.getString("tag").toLowerCase());
+					String tag = tagsrs.getString("tag");
+					if(tag != null){
+						keywords.add(tag.toLowerCase());
+					}
 				}
 				
 				

@@ -71,6 +71,8 @@
 		}
 		
 		statement2.executeUpdate(String.format("INSERT INTO transaction_report VALUES(%d, '%s', '%s', '%s', %.02f)", item_ID, item_type, item_name, maxbidname, maxbid));
+		statement2.executeUpdate(String.format("INSERT INTO alerts(email, text, redirect, date) VALUES('%s', '%s', '%s', NOW())", maxbidname, "You won the auction!", "itemdetailspage.jsp?id=" + item_ID));
+
 	}
 	
 	String cmd = String.format("SELECT sum(%s.selling_price)total_sum from %s ", transactionReport,transactionReport);
