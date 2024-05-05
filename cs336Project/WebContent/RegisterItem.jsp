@@ -97,6 +97,6 @@
 		}
 	}
 		
-	response.sendRedirect("mainpage.jsp");
+	response.sendRedirect("registerauctionpage.jsp");
 
 %>

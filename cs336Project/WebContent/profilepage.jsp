@@ -34,7 +34,7 @@
 			float maxbid = -1;
 			String maxbidname = "";
 			
-			ResultSet rs = statement2.executeQuery("select * from auction JOIN item using(item_id) LEFT JOIN (select auction_id, max(bid) as max_bid from bid group by auction_id) as max_bids using(auction_id) where auction_id = " + auction_id + " and max_bid >= minprice");	
+			ResultSet rs = statement2.executeQuery("select * from auction JOIN item using(item_id) LEFT JOIN (select auction_id, max(bid) as max_bid from bid group by auction_id) as max_bids using(auction_id) where auction_id = " + auction_id + " and (max_bid is null or max_bid >= minprice)");	
 			if(rs.next() && rs.getObject("max_bid") != null){
 				maxbid = rs.getFloat("max_bid");
 				
@@ -48,6 +48,8 @@
 			}
 			
 			statement2.executeUpdate(String.format("INSERT INTO transaction_report VALUES(%d, '%s', '%s', '%s', %.02f)", item_ID, item_type, item_name, maxbidname, maxbid));
+			statement2.executeUpdate(String.format("INSERT INTO alerts(email, text, redirect, date) VALUES('%s', '%s', '%s', NOW())", maxbidname, "You won the auction!", "itemdetailspage.jsp?id=" + item_ID));
+
 		}
 		
 		
