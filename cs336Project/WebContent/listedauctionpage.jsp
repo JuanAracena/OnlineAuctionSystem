@@ -272,6 +272,7 @@
 	
 		%>
 	</div>
+	<a href="mainpage.jsp"><button>Home</button></a>
 	
 	
 </body>

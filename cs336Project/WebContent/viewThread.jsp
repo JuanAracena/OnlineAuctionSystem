@@ -96,7 +96,7 @@
 			<textarea name="comment" rows="5" cols= "50" required></textarea><br/>
 			<br/><input type="submit" value="Post"/>
 		</form>
-		<br/><a href="LogOut.jsp"><button>Log out</button></a>
+		<br/><a href="mainpage.jsp"><button>Home</button></a>
 	
 	</div>	
 </body>
