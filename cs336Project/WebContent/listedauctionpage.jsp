@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Register Auction</title>
+<title>Listed Auctions</title>
 
 <style>
     .tag-input {
@@ -82,10 +82,80 @@
 	
 	
 	<%-- ITEMS --%>
+	<h3>Recommended Items:</h3>
+	<div id=items>
+		<%
+			ResultSet rs = statement.executeQuery("select * from auction JOIN item using(item_id) LEFT JOIN (select auction_id, max(bid) as max_bid from bid group by auction_id) as max_bids using(auction_id) where endauction > NOW() order by " + sortby + " " + sortdir);	
+
+			while(rs.next()){
+				int auctionid = rs.getInt("auction_id");
+				String itemtype = rs.getString("item_type");
+				int itemid = rs.getInt("item_id");
+				String itemname = rs.getString("item_name");
+				String description = rs.getString("description");
+				Timestamp endauction = rs.getTimestamp("endauction");
+				
+				// Create keyword search
+				ArrayList<String> keywords = new ArrayList<>();
+				keywords.add(itemtype.toLowerCase());
+				for (String element : itemname.split(" ")) {
+					keywords.add(element.toLowerCase());
+		        }
+				for (String element : description.split(" ")) {
+					keywords.add(element.toLowerCase());
+		        }
+				ResultSet tagsrs = statement2.executeQuery(String.format("select auction_id, tag from auction JOIN item using(item_id) JOIN item_tags using(item_id) where auction_id=%d", auctionid));
+				while(tagsrs.next()){
+					String tag = tagsrs.getString("tag");
+					if(tag != null){
+						keywords.add(tag.toLowerCase());
+					}
+				}
+				
+				// Create Possible Answers 
+				ArrayList<String> userkeywords = new ArrayList<>();
+				ResultSet usertags = statement2.executeQuery("select * from search_tags where email='" +user + "'"); 
+				while(usertags.next()){
+					String tag = usertags.getString("tag");
+					if(tag != null){
+						userkeywords.add(tag.toLowerCase());
+					}
+				}
+				
+				float maxbid = rs.getFloat("initprice");
+				
+				if(rs.getObject("max_bid") != null){
+					maxbid = rs.getFloat("max_bid");
+				}
+				keywords.retainAll(userkeywords);
+				
+				if(!keywords.isEmpty()){
+				
+				%>
+					<div id="item">
+						<b>Item: <% out.print(itemname); %></b> <br/>
+						Item Type: <% out.print(itemtype); %><br/>
+						
+						Item Description:
+							<% out.print(description); %> <br/>
+						Current Bid: <% out.print(maxbid); %> <br/>
+						
+						End Auction Date: <% out.print(endauction); %><br/>
+						<a href="itemdetailspage.jsp?id=<%out.print(itemid);%>"><button>Item Details</button></a>
+						<br/><br/><br/>
+					</div>
+					
+				<% 
+				}
+			}
+	
+		%>
+	</div>
+	
 	<div id=items>
 		<h3>Items:</h3>
 		<%
-			ResultSet rs = statement.executeQuery("select * from auction JOIN item using(item_id) LEFT JOIN (select auction_id, max(bid) as max_bid from bid group by auction_id) as max_bids using(auction_id) where endauction > NOW() order by " + sortby + " " + sortdir);	
+			rs = statement.executeQuery("select * from auction JOIN item using(item_id) LEFT JOIN (select auction_id, max(bid) as max_bid from bid group by auction_id) as max_bids using(auction_id) where endauction > NOW() order by " + sortby + " " + sortdir);	
 
 			while(rs.next()){
 				int auctionid = rs.getInt("auction_id");

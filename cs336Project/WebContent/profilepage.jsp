@@ -62,8 +62,12 @@
 		ResultSet profileInfo = statement.executeQuery("select * from user where email_address = '" + profileTo + "'");
 		
 		if(profileInfo.next() == false){
-			response.sendRedirect("login.jsp");
-			return;
+			profileTo = user;
+			profileInfo = statement.executeQuery("select * from user where email_address = '" + profileTo + "'");
+			if(profileInfo.next() == false){
+				response.sendRedirect("login.jsp");
+				return;
+			}
 		}
 		
 		String profileName = profileInfo.getString("name");
