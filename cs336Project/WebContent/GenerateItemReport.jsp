@@ -31,7 +31,19 @@
 	rs = statement.executeQuery(cmd);
 	if(rs.next()){
 		session.setAttribute("response", rs.getInt("total_sum"));
+		String cmd3 = String.format(" SELECT end_user_email, sum(selling_price)as total_buy FROM transaction_report GROUP BY end_user_email ORDER BY total_buy DESC LIMIT 1;");
+		String cmd4 = String.format("  SELECT item_name, count(*)as total_count FROM transaction_report GROUP BY item_name ORDER BY total_count DESC LIMIT 1;");
+		rs = statement.executeQuery(cmd3);
+		
+		if(rs.next()){
+			session.setAttribute("bestBuyer", rs.getString("end_user_email"));
+		}
+		rs = statement.executeQuery(cmd4);
+		if(rs.next()){
+			session.setAttribute("best_selling_Item", rs.getString("item_name"));
+		}
 		String cmd2 = String.format("SELECT * from %s ",transactionReport);
+		
 		ResultSet rs2 = statement.executeQuery(cmd2);
 		
 		while(rs2.next()){
@@ -45,7 +57,9 @@
 %>
 	<a href="adminpage.jsp"><button>Back</button> </a>
 	<h1>Sales Report</h1>
-	TOTAL EARNINGS: {$<%= session.getAttribute("response") %>}
+	TOTAL EARNINGS: {$<%= session.getAttribute("response") %>}<br>
+	BEST-SELLING ITEMS: {<%= session.getAttribute("best_selling_Item") %>}<br>
+	BEST BUYER: {<%= session.getAttribute("bestBuyer") %>}<br><br>
 	<%out.println("OPTIONS:"); %>
 		<a href="GenerateItemReport.jsp"><button>Item</button></a>
 		<a href="GenerateItemTypeReport.jsp"><button>Item Type</button></a>
