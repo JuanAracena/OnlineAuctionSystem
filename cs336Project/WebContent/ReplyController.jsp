@@ -9,6 +9,8 @@
     	Connection con =  db.getConnection();
     	Statement statement = con.createStatement();
     	ResultSet rs;
+    	String email = (String) session.getAttribute("user");
+
     	
     	//Getting info:
     	String thId = (String) session.getAttribute("ThId");
@@ -31,8 +33,11 @@
     		message_id += 1;
     	}
     	
+    	rs = statement.executeQuery("SELECT * FROM customer_representative where email_address = '" + email+"'");
+    	int isrep = 0;
+    	if(rs.next()) isrep = 1;
     	
-    	String info = String.format("INSERT INTO messages VALUES(%d, %d, '%s', NOW())", realThId, message_id, descr);
+    	String info = String.format("INSERT INTO messages VALUES(%d, %d, '%s', NOW(), %d)", realThId, message_id, descr, isrep);
     	statement.executeUpdate(info);
     	
     	con.close();
