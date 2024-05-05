@@ -13,6 +13,7 @@
 	<p>Comment: </p>
 		<textarea rows="5" cols="50" name="description" required></textarea><br/>
 	<p></p>
-	<input type="submit" value="Submit"/></form>
+	<input type="submit" value="Submit"/></form><br>
+	<a href="mainpage.jsp"><button>Home</button></a>
 </body>
 </html>

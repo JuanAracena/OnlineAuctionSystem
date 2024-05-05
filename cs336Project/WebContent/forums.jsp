@@ -50,7 +50,7 @@
 	<div>
 		<p>Create a new thread to talk to a customer representative</p>
 		<a href="createThread.jsp"><button>New Thread</button></a>
-		<a href="LogOut.jsp"><button>Log out</button></a>
+		<a href="mainpage.jsp"><button>Home</button></a>
 	</div>
 	
 </body>
