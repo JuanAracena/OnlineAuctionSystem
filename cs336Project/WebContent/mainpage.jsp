@@ -87,20 +87,22 @@
 		<%
 			Statement stmt2 = con.createStatement();
 			ResultSet rs2;
-			String getAlerts = String.format("SELECT text, redirect, date FROM alerts WHERE email='%s' order by date desc", session.getAttribute("user"));
+			String getAlerts = String.format("SELECT alert_id, text, redirect, date FROM alerts WHERE email='%s' order by date desc", session.getAttribute("user"));
 			rs2 = stmt2.executeQuery(getAlerts);
 			while(rs2.next()){%>
-				<p>&lt;<%out.print(rs2.getString("date"));%>&gt;:<%out.print(rs2.getString("text"));%><br><a href="<%= rs2.getString("redirect") %>">Check it out!</a>
+				<p>&lt;<%out.print(rs2.getString("date"));%>&gt;:<%out.print(rs2.getString("text"));%><br><a href="<%=rs2.getString("redirect")%>">Check it out!</a>
+				<a href="removeAlert.jsp?alert_id=<%=rs2.getString("alert_id")%>"><button>Delete</button></a>
 			<% }
 		%>
 	</div><br>
+	
 	<% 	
 	if(session.getAttribute("user") != null){
 		out.println("You are logged in as " + session.getAttribute("user"));
 	}else{
 		out.println("You currently are not logged in.");
 	}
-	
+	con.close();
 	%>
 </body>
 </html>
